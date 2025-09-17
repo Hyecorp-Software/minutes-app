@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Meeting Recorder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f6fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 300px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #2f3640;
+    }
+
+    input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      width: 120px;
+      padding: 10px;
+      margin: 5px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      color: white;
+    }
+
+    #startBtn {
+      background-color: #44bd32;
+    }
+
+    #stopBtn {
+      background-color: #e84118;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    #status {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #40739e;
+    }
+
+    html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    }
+
+    button:hover:enabled {
+    opacity: 0.65;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <img src="logo.jpg" alt="Logo" style="width: 80px; margin-bottom: 15px;">
+    <h1>Hyecorp Meeting Minutes Tool</h1>
+    <input type="email" id="email" placeholder="Enter your email"><br>
+    <button id="startBtn">Start Recording</button>
+    <button id="stopBtn" disabled>Stop Recording</button>
+    <p id="status">Idle</p>
+  </div>
+
+  <script src="scripts/app.js"></script>
+</body>
+
+</html>
