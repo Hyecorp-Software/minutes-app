@@ -56,7 +56,7 @@ async function uploadAudio(blob, email) {
   formData.append('email', email);
 
   // Replace this with your n8n webhook URL
-  const webhookUrl = 'https://hyecorp.app.n8n.cloud/webhook/c2b53327-c3b2-40ee-b92a-87220d3878f1';
+  const webhookUrl = 'https://n8n.gamelabs.com.au/webhook/03eaf6f2-9080-4e4a-8276-416a161242e2';
 
   try {
     const response = await fetch(webhookUrl, {
@@ -71,3 +71,4 @@ async function uploadAudio(blob, email) {
     alert('Upload error: ' + err);
   }
 }
+
