@@ -40,7 +40,7 @@ stopBtn.addEventListener('click', async () => {
   status.textContent = 'Processing...';
 
   mediaRecorder.onstop = async () => {
-    const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+    const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
     audioChunks = [];
 
     await uploadAudio(audioBlob, emailInput.value.trim());
@@ -71,4 +71,5 @@ async function uploadAudio(blob, email) {
     alert('Upload error: ' + err);
   }
 }
+
 
