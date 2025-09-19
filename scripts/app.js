@@ -52,7 +52,7 @@ stopBtn.addEventListener('click', async () => {
 // Upload audio to n8n
 async function uploadAudio(blob, email) {
   const formData = new FormData();
-  formData.append('file', blob, 'meeting.wav');
+  formData.append('file', blob, 'meeting.webm');
   formData.append('email', email);
 
   // Replace this with your n8n webhook URL
@@ -71,5 +71,6 @@ async function uploadAudio(blob, email) {
     alert('Upload error: ' + err);
   }
 }
+
 
 
