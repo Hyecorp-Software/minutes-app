@@ -5,6 +5,7 @@ const startBtn = document.getElementById('startBtn');
 const stopBtn = document.getElementById('stopBtn');
 const status = document.getElementById('status');
 const emailInput = document.getElementById('email');
+const waveform = document.getElementById('waveform'); // Make sure you have waveform div in HTML
 
 // Start recording
 startBtn.addEventListener('click', async () => {
@@ -17,15 +18,22 @@ startBtn.addEventListener('click', async () => {
   try {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     mediaRecorder = new MediaRecorder(stream);
+    audioChunks = [];
 
     mediaRecorder.ondataavailable = event => {
       audioChunks.push(event.data);
     };
 
     mediaRecorder.start();
+
+    // Update UI
     startBtn.disabled = true;
     stopBtn.disabled = false;
-    status.textContent = 'Recording...';
+    status.textContent = 'Recording';
+    status.className = 'recording';
+    startBtn.classList.add('recording');
+    waveform.classList.add('active');
+
   } catch (err) {
     alert('Could not access microphone: ' + err);
   }
@@ -36,15 +44,23 @@ stopBtn.addEventListener('click', async () => {
   if (!mediaRecorder) return;
 
   mediaRecorder.stop();
+
+  // Update UI
   stopBtn.disabled = true;
-  status.textContent = 'Processing...';
+  startBtn.classList.remove('recording');
+  waveform.classList.remove('active');
+  status.textContent = 'Processing';
+  status.className = 'processing dots';
 
   mediaRecorder.onstop = async () => {
     const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
     audioChunks = [];
 
     await uploadAudio(audioBlob, emailInput.value.trim());
-    status.textContent = 'Audio uploaded!';
+
+    // Update UI to uploaded
+    status.textContent = 'Uploaded successfully!';
+    status.className = 'uploaded';
     startBtn.disabled = false;
   };
 });
@@ -55,7 +71,6 @@ async function uploadAudio(blob, email) {
   formData.append('file', blob, 'meeting.webm');
   formData.append('email', email);
 
-  // Replace this with your n8n webhook URL
   const webhookUrl = 'https://n8n.gamelabs.com.au/webhook/03eaf6f2-9080-4e4a-8276-416a161242e2';
 
   try {
@@ -71,6 +86,3 @@ async function uploadAudio(blob, email) {
     alert('Upload error: ' + err);
   }
 }
-
-
-
