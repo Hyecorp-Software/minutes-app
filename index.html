@@ -212,39 +212,10 @@ button:active:enabled {
   </div>
 </div>
 
-<script>
-const startBtn = document.getElementById('startBtn');
-const stopBtn = document.getElementById('stopBtn');
-const status = document.getElementById('status');
-const waveform = document.getElementById('waveform');
-
-startBtn.addEventListener('click', () => {
-  status.textContent = "Recording";
-  status.className = "recording";
-  startBtn.classList.add("recording");
-  startBtn.disabled = true;
-  stopBtn.disabled = false;
-  waveform.classList.add("active");
-});
-
-stopBtn.addEventListener('click', () => {
-  status.textContent = "Processing";
-  status.className = "processing dots";
-  startBtn.classList.remove("recording");
-  startBtn.disabled = true;
-  stopBtn.disabled = true;
-  waveform.classList.remove("active");
-
-  // Simulate processing/upload
-  setTimeout(() => {
-    status.textContent = "Uploaded successfully!";
-    status.className = "uploaded";
-    startBtn.disabled = false;
-  }, 3500);
-});
-</script>
+<script src="scripts/app.js"></script>
 </body>
 </html>
+
 
 
 
