@@ -86,11 +86,12 @@ stopBtn.addEventListener('click', async () => {
       // -------------------------
       // 2. Get direct download link
       // -------------------------
-      const linkRes = await dbx.sharingCreateSharedLinkWithSettings({
-        path: uploadRes.result.path_lower
-      });
-      const directLink = linkRes.result.url.replace('?dl=0','?dl=1');
 
+      const tempLinkRes = await dbx.filesGetTemporaryLink({
+      path: uploadRes.result.path_lower
+      });
+      const directLink = tempLinkRes.result.link;
+ 
       // -------------------------
       // 3. Trigger n8n webhook
       // -------------------------
@@ -128,5 +129,6 @@ stopBtn.addEventListener('click', async () => {
     }
   };
 });
+
 
 
